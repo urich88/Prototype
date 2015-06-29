@@ -86,16 +86,26 @@ public class GameManager : MonoBehaviour {
 		Debug.Log(cBigAlert);
 
     //checks which one is bigger (add the one routine to activate player)
-		if(pBigAlert > cBigAlert)
+    //player turn
+		if (pBigAlert > cBigAlert)
 		{
 			pTurn = true;
 			cTurn = false;
-		}
-		else {
+      //cpu turn
+      if (pBigAlert < cBigAlert)
+      {
+        cTurn = true;
+        pTurn = false;
 
-			cTurn = true;
-			pTurn = false;
+        //priority to player in case the values are the same over cpu
+        if (pBigAlert == cBigAlert)
+        {
+          pTurn = true;
+        }
+      }
+
 		}
+		
 
 	}
 }
