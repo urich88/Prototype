@@ -49,6 +49,9 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+    //initialize the file manager class
+    FileManager.Instance.initialize();
 	
 	}
 	
