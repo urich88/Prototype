@@ -24,7 +24,7 @@ public class Damage : MonoBehaviour {
     //numero de golpes, por ahora el default sera 1
     hits = 1;
     //attacks base points
-    attack1 = 20; attack2 = 35; attack2 = 50;
+    attack1 = 20; attack2 = 35; attack3 = 50;
     //robots base stats
     hp = 80; maxHP = 120; presicion = 3; swiftness = 3; armor = 10;
     offensive = 10; alertness = 1;
@@ -81,7 +81,9 @@ public class Damage : MonoBehaviour {
   {
     curOffensive = 10;
     curOffensive = offensive;
-    attack1 = attack1 + offensive;
+    int currentAttack;
+    currentAttack = attack1 + offensive;
+    currentAttack = attack1;
     Debug.Log(attack1);
   }
   //medium attack
