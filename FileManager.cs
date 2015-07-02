@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
-using System.Xml.Serialization;
 using UnityEditor;
+using System.Text;
+using System.Xml;
+using System.Security.Cryptography;
 
 public class FileManager : MonoBehaviour {
 
@@ -76,14 +80,14 @@ public class FileManager : MonoBehaviour {
 
   }
   //------ACCESING DATA PATHS-------------//
-  /* accesing the data paths to read
-   * //Path to games data directory
-   * Application.dataPath
-   * //persistent data directory
-   * Application.persistentDataPath //iOS
-   * //temporary cache
-   * Application.temporalyCachePath
-   * -----------------------------------*/
+  /* accesing the data paths to read*/
+   //Path to games data directory
+  //Application.dataPath;
+   //persistent data directory
+    //Application.persistentDataPath; //iOS
+   //temporary cache
+    //Application.temporalyCachePath;
+   //-----------------------------------*/
 
   //-------Checking the existance of directories---------------//
  // checkDirectory()
@@ -152,24 +156,26 @@ public class FileManager : MonoBehaviour {
     string [] subdirectoryList = Directory.GetDirectories(path + "/" + directory);
     return subdirectoryList;
   }
+ 
   //--------Listing Subdirectories-----------------//
   /* method returns a list of subdirectories
    * grab subdirectories in gamedata and list them */
-  string [] subDirectoryList = findsubdirectories("gamedata");
+  //string [] subDirectoryList = findsubdirectories("gamedata");
 
-  foreach(string subdirectory in subdirectoryList)
-  {
-    print("found: " + subdirectory);
-  }
+  //foreach(string subdirectory in subdirectoryList)
+  //{
+   // print("found: " + subdirectory);
+  //}
+
 
   //-----------Listing directory contents---------//
   //findFiles()
   //returns the files from a given directory
-  public string [] findFiles(string directory)
+  public string[] findFiles(string directory)
   {
     print("checking directory: " + directory + "for files");
 
-    string[] fileList = Directory.GetFiles(path + "/" + directpry);
+    string[] fileList = Directory.GetFiles(path + "/" + directory);
 
     return fileList;
   }
@@ -179,7 +185,7 @@ public class FileManager : MonoBehaviour {
   //checks to see whether a file exist
   public bool checkFile(string filePath)
   {
-    if(File.Exist(path + "/" + filePath))
+    if(File.Exists(path + "/" + filePath))
     {
       return true;
     }
@@ -195,7 +201,7 @@ public class FileManager : MonoBehaviour {
   //receiving 4string directory, filename, file type and file data
   public void createFile(string directory, string filename, string filetype, string fileData)
   {
-    print("Creating: " + directory + "/" filename + "." + filetype);
+    print("Creating: " + directory + "/" + filename + "." + filetype);
     //checking if directory exist
     if(checkDirectory(directory) == true)
     {
@@ -225,16 +231,16 @@ public class FileManager : MonoBehaviour {
     //check if directory exist
     if(checkDirectory(directory) == true)
     {
-      if(checkFile(directoy + "/" + filename + "." + filetype) == true)
+      if(checkFile(directory + "/" + filename + "." + filetype) == true)
       {
         //Read the file
-        string fileContents = File.ReadAllText(path + "/" + directory + "/" filename + "." + filetype);
+        string fileContents = File.ReadAllText(path + "/" + directory + "/" + filename + "." + filetype);
 
         return fileContents;
       }
       else
       {
-        print("the file: " + filename + "does not exist in " + path + "/" directory);
+        print("the file: " + filename + "does not exist in " + path + "/" + directory);
 
         return null;
       }
@@ -252,7 +258,7 @@ public class FileManager : MonoBehaviour {
   //deletes a specified file
   public void deleteFile(string filePath)
   {
-    if(File.Exist(path + "/" filePath))
+    if(File.Exists(path + "/" + filePath))
     {
       File.Delete(path + "/" + filePath);
     }
@@ -274,7 +280,7 @@ public class FileManager : MonoBehaviour {
       {
         if(mode == "replace")
         {
-          File.WriteAllText(path + "/" + directory + "/" + filename + "." + filetype, filedata);
+          File.WriteAllText(path + "/" + directory + "/" + filename + "." + filetype, fileData);
         }
         else
         {
@@ -287,8 +293,8 @@ public class FileManager : MonoBehaviour {
       }
     }
   }
-
-  //--------------writing XML---------------------------//
+  /*
+  //--------------WRITING XML---------------------------//
   //createNewXML()
   //creates a new XML file
   public void createXMLFile(string directory, string filename, string filetype, string fileData, string mode)
@@ -297,9 +303,17 @@ public class FileManager : MonoBehaviour {
 
     if(checkDirectory(directory) == true)
     {
-      if(mode == "
+      if(mode == "plaintext")
+      {
+        File.WriteAllText(path + "/" + directory + "/" + filename + "." + filetype, fileData);
+      }
+    }
+    else
+    {
+      print("unable to create file as the directory " + directory + "does not exist");
     }
   }
-
+*/
 	
 }
+

@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour {
 	//Player turn
 	public bool pTurn, cTurn;
 
+
+
 	
 	//Loading and checking the manager loads correctly
 
