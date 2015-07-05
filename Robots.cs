@@ -7,6 +7,10 @@ public class Robots : System.Object {
 /* Every Robot stat is here and from here it
  * would be pulled elsewhere into an array*/
 
+  //Core properties of robots
+  /*For this version only it will have the base
+   * stats, not of the pieces of the robot.*/
+
   //name
   public string robotName;
 
@@ -14,16 +18,15 @@ public class Robots : System.Object {
   public int hp, currentHP, maxHP, presicion, curPresicion, maxPresicion,
   swiftness, maxSwiftness, curSwiftness, offensive, curOffensive,
   maxOffensive, armor, curArmor, maxArmor, alertness, maxAlertness,
-  attack1, attack2, attack3, hits;
+  attack1, attack2, attack3, hits, baseAttack1, baseAttack2, baseAttack3;
 
   //type (class)
-  public Types type;
-
-  //rarity (maybe would be used maybe not why not?)
-  public Rarity rarity;
+  public Type type;
 
   //turn
   public bool turn;
+
+  public Attack[] attacks;
 
   //clases de robots
   public enum Type 
@@ -36,20 +39,13 @@ public class Robots : System.Object {
 
   }
 
-  //raresa (por las piezas o robots
-  public enum Rarity
-  {
-    Common,
-    Trashy,
-    Champion,
-    Legendary
-  }
-
   public string RobotName
   {
     get{return robotName;}
     set{robotName = value;}
   }
+
+
 
 }
 
